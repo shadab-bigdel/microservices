@@ -6,8 +6,9 @@ import org.springframework.web.client.RestTemplate;
 
 import com.shbigdel.user.entity.User;
 import com.shbigdel.user.repository.UserRepository;
-import com.shbigdel.user.vo.ResponseTemplateVO;
 import com.shbigdel.user.vo.UserGroup;
+import com.shbigdel.user.vo.UserGroupResponseTemplateVO;
+import com.shbigdel.user.vo.UserResponseTemplateVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,19 +26,20 @@ public class UserService {
 		return userRepository.save(user);
 	}
 
-	public ResponseTemplateVO getUserWithGroup(Long userId) {
+	public UserResponseTemplateVO getUserWithGroup(Long userId) {
 
-		ResponseTemplateVO vo = new ResponseTemplateVO();
+		UserResponseTemplateVO vo = new UserResponseTemplateVO();
 		User user = userRepository.findByUserId(userId);
 		if (user == null) {
 			log.info("No user found");
 			return vo;
 		}
 
-		UserGroup group = restTemplate.getForObject("http://localhost:9002/usergroups/" + user.getGroupId(),
-				UserGroup.class);
+		UserGroupResponseTemplateVO userGroupResponseTemplateVO = restTemplate.getForObject("http://localhost:9002/usergroups/" + user.getGroupId(),
+				UserGroupResponseTemplateVO.class);
 		vo.setUser(user);
-		vo.setGroup(group);
+		vo.setUserGroup(userGroupResponseTemplateVO.getUserGroup());
+		vo.setPolicy(userGroupResponseTemplateVO.getPolicy());
 
 		return vo;
 	}

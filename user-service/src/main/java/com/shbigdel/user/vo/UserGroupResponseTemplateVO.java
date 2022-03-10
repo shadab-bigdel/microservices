@@ -1,7 +1,5 @@
 package com.shbigdel.user.vo;
 
-import com.shbigdel.user.entity.User;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,9 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResponseTemplateVO {
+public class UserGroupResponseTemplateVO {
 
-	private User user;
-	private UserGroup group;
+	private UserGroup userGroup;
+	private Policy policy;
 
 }

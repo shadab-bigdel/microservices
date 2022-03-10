@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.shbigdel.usergroup.entity.UserGroup;
 import com.shbigdel.usergroup.service.UserGroupService;
-import com.shbigdel.usergroup.vo.ResponseTemplateVO;
+import com.shbigdel.usergroup.vo.UserGroupResponseTemplateVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,7 +29,7 @@ public class UserGroupController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseTemplateVO getUserGroupWithPolicy (@PathVariable("id") Long userGroupId) {
+	public UserGroupResponseTemplateVO getUserGroupWithPolicy (@PathVariable("id") Long userGroupId) {
 		log.info("finding User Groups");
 		return userGroupService.getUserGroupWithPolicy(userGroupId);
 	}

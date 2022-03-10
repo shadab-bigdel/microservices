@@ -7,7 +7,7 @@ import org.springframework.web.client.RestTemplate;
 import com.shbigdel.usergroup.entity.UserGroup;
 import com.shbigdel.usergroup.repository.UserGroupRepository;
 import com.shbigdel.usergroup.vo.Policy;
-import com.shbigdel.usergroup.vo.ResponseTemplateVO;
+import com.shbigdel.usergroup.vo.UserGroupResponseTemplateVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,9 +25,9 @@ public class UserGroupService {
 		return userGroupRepository.save(userGroup);
 	}
 
-	public ResponseTemplateVO getUserGroupWithPolicy(Long userGroupId) {
+	public UserGroupResponseTemplateVO getUserGroupWithPolicy(Long userGroupId) {
 
-		ResponseTemplateVO vo = new ResponseTemplateVO();
+		UserGroupResponseTemplateVO vo = new UserGroupResponseTemplateVO();
 		UserGroup userGroup = userGroupRepository.findByGroupId(userGroupId);
 		if (userGroup == null) {
 			log.info("No group  found");

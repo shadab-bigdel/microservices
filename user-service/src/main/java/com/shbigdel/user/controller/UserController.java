@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.shbigdel.user.entity.User;
 import com.shbigdel.user.service.UserService;
-import com.shbigdel.user.vo.ResponseTemplateVO;
+import com.shbigdel.user.vo.UserResponseTemplateVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,7 +29,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseTemplateVO getUserWithGroup (@PathVariable("id") Long userId) {
+	public UserResponseTemplateVO getUserWithGroup (@PathVariable("id") Long userId) {
 		log.info("finding user with group");
 		return userService.getUserWithGroup(userId);
 	}
