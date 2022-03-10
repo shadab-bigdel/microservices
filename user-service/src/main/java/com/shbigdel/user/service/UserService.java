@@ -6,8 +6,8 @@ import org.springframework.web.client.RestTemplate;
 
 import com.shbigdel.user.entity.User;
 import com.shbigdel.user.repository.UserRepository;
-import com.shbigdel.user.vo.UserGroup;
 import com.shbigdel.user.vo.ResponseTemplateVO;
+import com.shbigdel.user.vo.UserGroup;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,7 +25,7 @@ public class UserService {
 		return userRepository.save(user);
 	}
 
-	public ResponseTemplateVO getUserWithDepartment(Long userId) {
+	public ResponseTemplateVO getUserWithGroup(Long userId) {
 
 		ResponseTemplateVO vo = new ResponseTemplateVO();
 		User user = userRepository.findByUserId(userId);
@@ -34,10 +34,10 @@ public class UserService {
 			return vo;
 		}
 
-		UserGroup department = restTemplate.getForObject("http://localhost:9001/departments/" + user.getDepartmentId(),
+		UserGroup group = restTemplate.getForObject("http://localhost:9002/usergroups/" + user.getGroupId(),
 				UserGroup.class);
 		vo.setUser(user);
-		vo.setDepartment(department);
+		vo.setGroup(group);
 
 		return vo;
 	}

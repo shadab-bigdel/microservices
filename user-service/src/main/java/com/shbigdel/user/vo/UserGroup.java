@@ -10,10 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserGroup {	
 	
-	private Long departmentId;
-	private String departmentName;
-	private String departmentAddress;
-	private String departmentCode;
+	private Long groupId;
+	private String groupName;
+	private Long policyId;
 
 	
 }

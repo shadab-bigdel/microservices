@@ -29,9 +29,9 @@ public class UserController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseTemplateVO getUserWithDepartment (@PathVariable("id") Long userId) {
-		log.info("finding department");
-		return userService.getUserWithDepartment(userId);
+	public ResponseTemplateVO getUserWithGroup (@PathVariable("id") Long userId) {
+		log.info("finding user with group");
+		return userService.getUserWithGroup(userId);
 	}
 
 }
