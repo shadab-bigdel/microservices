@@ -35,7 +35,7 @@ public class UserService {
 			return vo;
 		}
 
-		UserGroupResponseTemplateVO userGroupResponseTemplateVO = restTemplate.getForObject("http://localhost:9002/usergroups/" + user.getGroupId(),
+		UserGroupResponseTemplateVO userGroupResponseTemplateVO = restTemplate.getForObject("http://USERGROUP-SERVICE/usergroups/" + user.getGroupId(),
 				UserGroupResponseTemplateVO.class);
 		vo.setUser(user);
 		vo.setUserGroup(userGroupResponseTemplateVO.getUserGroup());

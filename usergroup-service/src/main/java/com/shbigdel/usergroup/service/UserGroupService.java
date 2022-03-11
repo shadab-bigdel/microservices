@@ -34,7 +34,7 @@ public class UserGroupService {
 			return vo;
 		}
 
-		Policy policy = restTemplate.getForObject("http://localhost:9003/policies/" + userGroup.getPolicyId(),
+		Policy policy = restTemplate.getForObject("http://POLICY-SERVICE/policies/" + userGroup.getPolicyId(),
 				Policy.class);
 		
 		vo.setUserGroup(userGroup);
