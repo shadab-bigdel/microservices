@@ -11,20 +11,40 @@ spring:
       uri: lb://USER-SERVICE
       predicates:
        - Path=/users/**
+      filters:
+       - name: CircuitBreaker
+         args: 
+          name: USER-SERVICE
+          fallbackuri: forward:/userServiceFallBack
     - id: USERGROUP-SERVICE
       uri: lb://USERGROUP-SERVICE
       predicates:
        - Path=/usergroups/**
+      filters:
+       - name: CircuitBreaker
+         args: 
+          name: USER-SERVICE
+          fallbackuri: forward:/userGroupServiceFallBack
     - id: POLICY-SERVICE
       uri: lb://POLICY-SERVICE
       predicates:
        - Path=/policies/**
- 
-eureka:
- client:
-  registry-with-eureka: true
-  fetch-registry: true
-  service-url:
-   defaultZone: http://localhost:8761/eureka/
- instance:
-  hostname: localhost
+      filters:
+       - name: CircuitBreaker
+         args: 
+          name: USER-SERVICE
+          fallbackuri: forward:/policyServiceFallBack
+
+hystrix:
+ command:
+  fallbackcmd:
+   execution:
+    isolation:
+     thread:
+      timeoutInMilliseconds: 4000
+
+management:
+ endpoints:
+  web:
+   exposure:
+    include: '*'
